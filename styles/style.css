@@ -66,13 +66,14 @@ a:hover {
   font-size: 1.1em;
   background: #191c1e;
   padding: 10px;
+  cursor: pointer;
 
 }
 .cart{
   font-size: 2em;
 }
  .moto {
-  background: url(./assets/details.png);
+  background: url(../assets/images/details.png);
   display: grid;
   color: #272727;
   grid-gap: 20px;
@@ -411,4 +412,9 @@ hr {
 }
 .signout-state {
   display: none;
+}
+.spinner {
+  margin: 10px auto 5px auto;
+  color: tomato;
+  font-family: 'Yatra One', cursive;
 }

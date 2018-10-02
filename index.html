@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Fast Food Fast</title>
   <link href="https://fonts.googleapis.com/css?family=Lora|Yatra+One" rel="stylesheet">
-  <link rel="stylesheet" href="UI/style.css">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
   <section class="contain">
@@ -20,8 +20,8 @@
             <li class="state"><a  onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</a></li>
             <li><a id="sign-out" class = "signout-state" href="#"> Sign Out </a></li>
             <li><a id = 'display-name' class="signout-state" href="#"> </a></li>
-            <li><a href="./UI/admin.html"> Admin </a></li>
-            <li><a class="cart signout-state" href="./UI/user.html"> 🛒 </a></li>
+            <li><a href="./admin.html"> Admin </a></li>
+            <li><a class="cart signout-state" href="./user.html"> 🛒 </a></li>
           </ul>
           <div>
             <div id="mySidenav" class="sidenav">
@@ -29,8 +29,8 @@
               <a onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Log In</a>
               <a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</a>
               <a href="#"> Sign Out </a>
-              <a href="./UI/admin.html">Admin</a>
-              <a href="./UI/user.html"> 🛒 </a>
+              <a href="./admin.html">Admin</a>
+              <a href="./user.html"> 🛒 </a>
             </div>
             <div id="main">
             </div>
@@ -58,7 +58,7 @@
               <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
               <button type="submit" class="signupbtn">Log In</button>
               <span id='login-spinner'>
-                <img src="./UI/assets/1.gif" alt="" srcset="">
+                <img src="./assets/images/1.gif" alt="" srcset="">
               </span>
             </div>
           </div>
@@ -80,6 +80,9 @@
             <label for="password"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
 
+            <label for="password"><b>Confirm Password</b></label>
+            <input type="password" placeholder="Confirm Password" name="confirmPassword" required>
+
             <label for="phone"><b>Phone</b></label>
             <input type="text" placeholder="Enter Phone Number" name="phone" required>
 
@@ -96,7 +99,7 @@
               <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
               <button type="submit" class="signupbtn">Sign Up</button>
               <span id='signup-spinner'>
-                <img src="./UI/assets/1.gif" alt="" srcset="">
+                <img src="./assets/images/1.gif" alt="" srcset="">
               </span>
             </div>
           </div>
@@ -129,7 +132,7 @@
         <div class="all-foods">
           <form action="#">
             <div class="food">
-              <img src="./UI/assets/rice.jpg" alt="rice and chicken">
+              <img src="./assets/images/rice.jpg" alt="rice and chicken">
               <div class="cover cover-content">
                 <div class="name-price">
                   <h4>Fried Rice and Chicken</h4>
@@ -149,7 +152,7 @@
             </form>
             <form action="#">
               <div class="food">
-                <img src="./UI/assets/rice.jpg" alt="rice and chicken">
+                <img src="./assets/images/rice.jpg" alt="rice and chicken">
                 <div class="cover cover-content">
                   <div class="name-price">
                     <h4>Fried Rice and Chicken</h4>
@@ -170,7 +173,7 @@
             </form>
             <form action="#">
               <div class="food">
-                <img src="./UI/assets/rice.jpg" alt="rice and chicken">
+                <img src="./assets/images/rice.jpg" alt="rice and chicken">
                 <div class="cover cover-content">
                   <div class="name-price">
                     <h4>Fried Rice and Chicken</h4>
@@ -191,7 +194,7 @@
             </form>
             <form action="#">
               <div class="food">
-                <img src="./UI/assets/rice.jpg" alt="rice and chicken">
+                <img src="./assets/images/rice.jpg" alt="rice and chicken">
                 <div class="cover cover-content">
                   <div class="name-price">
                     <h4>Fried Rice and Chicken</h4>
@@ -219,9 +222,8 @@
       <span>All Rights Reserved.</span>
     </footer>
   </section>
-  <script src="./UI/js/index.js"></script>
-  <script src="./front-end/helper.js"></script>
-  <script src="./front-end/checkstate.js"></script>
-  <script src='./front-end/user.js'></script>
+  <script src="./js/modal.js"></script>
+  <script src="./js/state.js"></script>
+  <script src='./js/user.js'></script>
 </body>
 </html>
