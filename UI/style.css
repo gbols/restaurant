@@ -1,0 +1,414 @@
+html, body{
+    height: 100%;
+    font-family: 'Lora', serif;
+    font-size: small;
+    color:  #191c1e;
+    background: whitesmoke;
+}
+
+.contain {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+h1{
+  font-size: 2.2em;
+  font-family: 'Yatra One', cursive;
+}
+h3{
+  font-family: 'Lora', serif;
+  font-weight: normal;
+  display: inline;
+  font-size: 1.3em;
+  margin-left: 10px;
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  place-items: center end;
+}
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  grid-template-areas: 
+  "home home details";
+}
+.home{
+  grid-area: home;
+  padding-left: 20px;
+}
+.details{
+  grid-area: details;
+  justify-self: end;
+}
+menu ul{
+  margin-right: 10px;;
+}
+menu ul li{
+  list-style: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  display: inline;
+  padding: 10px;
+}
+a {
+  text-decoration: none;
+  color:  #191c1e;
+}
+a:hover {
+  color: whitesmoke;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px; 
+  font-size: 1.1em;
+  background: #191c1e;
+  padding: 10px;
+
+}
+.cart{
+  font-size: 2em;
+}
+ .moto {
+  background: url(./assets/details.png);
+  display: grid;
+  color: #272727;
+  grid-gap: 20px;
+  padding: 20px;
+  grid-template-columns: repeat(auto-fit,minmax(220px, 1fr));
+  border: thick dashed whitesmoke;
+}
+
+.mantra {
+  display: grid;
+  grid-auto-rows: 2fr 1fr auto;
+  place-items: center center;
+}
+.mantra p {
+  text-align: center;
+  font-size: 1.2em;
+}
+.emoji {
+  font-size: 6.2em;
+}
+.food-items h2 {
+  font-size: 2.7em;
+  font-weight: 300;
+  text-align: center;
+}
+.all-foods {
+  display: grid;
+  grid-gap: 20px;
+  padding: 10px;
+  grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+}
+
+.food {
+  display: grid;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+
+.food:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.food img {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  height: auto;
+}
+.quantity{
+  font-weight: bolder;
+  font-size: 1.1em;
+}
+.quantity-section{
+  margin-bottom: 8px;
+}
+.cover {
+  padding: 2px 16px;
+}
+.cover-content {
+  display: grid;
+}
+
+.name-price {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.action{
+  font-weight: bolder;
+  text-align: center;
+}
+.action:hover, .completed:hover{
+  background: #f4ca1f;
+  color: #191c1e;
+}
+/* The navigation menu links */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #464e53;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 1.2em;
+    color: whitesmoke;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: whitesmoke;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+@media screen and (max-width: 700px) {
+  .lists {
+    display: none;
+  }
+}
+@media screen and (min-width: 701px) {
+  .drawer {
+    display: none;
+  }
+}
+@media screen and (max-width: 548px) {
+  .nav {
+    grid-template-areas:
+    "home home home"
+    "details details details";
+  }
+  .details{
+    padding: 0;
+    margin: 0px;
+    justify-self: start;
+  }
+  h1 {
+    font-size: 1.5em;
+    margin: 0;
+  }
+}
+
+ul li h1{
+  display: inline;
+  padding: 10px;
+}
+time{
+  font-weight: bold;
+}
+.period{
+  display: grid;
+  grid-template-columns: auto  auto;
+  place-items: center center;
+}
+.num{
+  font-weight: lighter;
+  font-size: 1.6em;
+  padding-left: 5px;
+  color: #f44336;
+}
+.admin{
+  display: grid;
+  /* grid-gap: 10px; */
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0px;
+  padding: 0px;
+}
+.bolt{
+  justify-self: center;
+}
+.settings{
+  justify-self: end;
+}
+.dropup {
+    position: relative;
+    display: inline-block;
+}
+
+.dropup-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    bottom: 15px;
+    z-index: 1;
+}
+
+.dropup-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropup-content a:hover {background-color: #f4ca1f}
+
+.dropup:hover .dropup-content {
+    display: block;
+}
+
+.dropup:hover .dropbtn {
+    background-color: #2980B9;
+}
+footer {
+  text-align: center;
+  
+}
+
+
+/* for modal login and sign up form */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    box-sizing: border-box;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #f4ca1f;
+    color: #191c1e;
+    padding: 14px 20px;
+    margin: 8px 0;
+    font-size: 1.3em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.8;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%;
+     /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #464e53;
+    padding-top: 20px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    box-sizing: border-box;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+.close:hover,
+.close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}
+
+#login-spinner > img, #signup-spinner > img{
+  display: none;
+  position: relative;
+  padding-top: 10px;
+  margin: 10px auto 5px auto;
+}
+.state{
+  display: inline;
+}
+.signout-state {
+  display: none;
+}
