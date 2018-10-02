@@ -19,18 +19,19 @@
             <li class='state'><a  onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Log In</a></li>
             <li class="state"><a  onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</a></li>
             <li><a id="sign-out" class = "signout-state" href="#"> Sign Out </a></li>
-            <li><a id = 'display-name' class="signout-state" href="#"> </a></li>
-            <li><a href="./admin.html"> Admin </a></li>
+            <li><span id = 'display-name' class="signout-state" href="#"> </span></li>
+            <li><a href="./admin/admin.html"> Admin </a></li>
             <li><a class="cart signout-state" href="./user.html"> 🛒 </a></li>
           </ul>
           <div>
             <div id="mySidenav" class="sidenav">
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-              <a onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Log In</a>
-              <a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</a>
-              <a href="#"> Sign Out </a>
-              <a href="./admin.html">Admin</a>
-              <a href="./user.html"> 🛒 </a>
+              <a id='nav-display-name' class="signout-state" href="#"> </a>
+              <a class='state' onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Log In</a>
+              <a class='state' onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</a>
+            </br><a class="signout-state" id="nav-sign-out" href="#"> Sign Out </a>
+              <a href="./admin/admin.html">Admin</a>
+              <a class="signout-state" href="./user.html"> 🛒 </a>
             </div>
             <div id="main">
             </div>
@@ -60,6 +61,9 @@
               <span id='login-spinner'>
                 <img src="./assets/images/1.gif" alt="" srcset="">
               </span>
+                <span id='login-spinner-message'>
+                
+                </span>
             </div>
           </div>
         </form>
@@ -100,6 +104,9 @@
               <button type="submit" class="signupbtn">Sign Up</button>
               <span id='signup-spinner'>
                 <img src="./assets/images/1.gif" alt="" srcset="">
+              </span>
+              <span id='signup-spinner-message'>
+                
               </span>
             </div>
           </div>
@@ -223,6 +230,7 @@
     </footer>
   </section>
   <script src="./js/modal.js"></script>
+  <script src="./js/jwt-decode.min.js"></script>
   <script src="./js/state.js"></script>
   <script src='./js/user.js'></script>
 </body>

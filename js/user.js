@@ -1,8 +1,10 @@
+const loginForm = document.forms["login"];
 const signUpForm = document.forms["sign-up"];
+const loginSpinner = document.querySelector("#login-spinner > img");
 const signupSpinner = document.querySelector("#signup-spinner > img");
 const sign_out = document.getElementById("sign-out");
-const signupMessage = document.querySelector("#signup-spinner");
-const userDetails = document.getElementById("display-name");
+const loginMessage = document.querySelector("#login-spinner-message");
+const signupMessage = document.querySelector("#signup-spinner-message");
 
 const header = new Headers({
   Accept: "application/json",
@@ -43,7 +45,6 @@ const signUp = event => {
           signupMessage.innerHTML = `<h4 class = "spinner">${
             data.message
           }</h4>`;
-          userDetails.innerHTML = `<span>Hi ${data.details.username}</span>`;
           if (!localStorage.token) {
             localStorage.setItem("token", data.token);
           }
@@ -63,4 +64,48 @@ const signUp = event => {
   }
 };
 
+const login = event => {
+  event.preventDefault();
+  const details = {
+    username: loginForm.username.value,
+    password: loginForm.password.value
+  };
+  const request = new Request(
+    "https://mygbols.herokuapp.com/api/v1/auth/login",
+    {
+      method: "POST",
+      mode: "cors",
+      headers: header,
+      body: JSON.stringify(details)
+    }
+  );
+  loginSpinner.style.display = "block";
+  fetch(request)
+    .then(res => res)
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      if (!data.token) {
+        loginSpinner.style.display = "none";
+        loginMessage.innerHTML = `<h4 class="spinner">${data.message}</h4>`;
+      } else {
+        changeState(signoutState, "inline");
+        changeState(state, "none");
+        loginSpinner.style.display = "none";
+        loginMessage.innerHTML = `<h4 class="spinner">${data.message}</h4>`;
+        if (!localStorage.token) {
+          localStorage.setItem("token", data.token);
+        }
+        loginForm.reset();
+        location.assign("./index.html");
+      }
+    })
+    .catch(err => {
+      loginSpinner.style.display = "none";
+      throw err;
+    });
+};
+
+loginForm.addEventListener("submit", login);
 signUpForm.addEventListener("submit", signUp, false);
