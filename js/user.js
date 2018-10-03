@@ -2,7 +2,7 @@ const loginForm = document.forms["login"];
 const signUpForm = document.forms["sign-up"];
 const loginSpinner = document.querySelector("#login-spinner > img");
 const signupSpinner = document.querySelector("#signup-spinner > img");
-const sign_out = document.getElementById("sign-out");
+const signOutBtn = document.getElementById("sign-out");
 const loginMessage = document.querySelector("#login-spinner-message");
 const signupMessage = document.querySelector("#signup-spinner-message");
 
@@ -107,5 +107,14 @@ const login = event => {
     });
 };
 
+const signOut = event => {
+  event.preventDefault();
+  if (localStorage.token) {
+    localStorage.removeItem("token");
+  }
+  changeState(state, "inline");
+  changeState(signoutState, "none");
+};
+signOutBtn.addEventListener("click", signOut, false);
 loginForm.addEventListener("submit", login);
 signUpForm.addEventListener("submit", signUp, false);
