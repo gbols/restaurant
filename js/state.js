@@ -3,10 +3,8 @@ const signoutState = document.querySelectorAll(".signout-state");
 const userDetails = document.getElementById("display-name");
 const navUserDetails = document.getElementById("nav-display-name");
 
-
- 
 /**
- * sets the display property to none or block 
+ * sets the display property to none or block
  * @param  {NodeList} elements
  * @param  {string} value
  */
@@ -16,9 +14,9 @@ const changeState = (elements, value) => {
   }
 };
 
-/** 
+/**
  * checks if a user is logged and update app state accordingly
-*/
+ */
 if (localStorage.getItem("token")) {
   changeState(signoutState, "inline");
   changeState(state, "none");
@@ -30,16 +28,28 @@ if (localStorage.getItem("token")) {
   navUserDetails.innerHTML = `<span><span>👤</span> ${
     decoded.payload.user.username
   }</span>`;
-
-  function jwtDecode(t) {
-    let token = {};
-    token.raw = t;
-    token.header = JSON.parse(window.atob(t.split(".")[0]));
-    token.payload = JSON.parse(window.atob(t.split(".")[1]));
-    return token;
-  }
 }
 
+if (localStorage.getItem("adminToken")) {
+  changeState(signoutState, "inline");
+  changeState(state, "none");
+  const adminToken = localStorage.getItem("adminToken");
+  const decoded = jwtDecode(adminToken);
+  userDetails.innerHTML = `<span><span>👤</span> ${
+    decoded.payload.user.username
+  }</span>`;
+  navUserDetails.innerHTML = `<span><span>👤</span> ${
+    decoded.payload.user.username
+  }</span>`;
+}
+
+function jwtDecode(t) {
+  let token = {};
+  token.raw = t;
+  token.header = JSON.parse(window.atob(t.split(".")[0]));
+  token.payload = JSON.parse(window.atob(t.split(".")[1]));
+  return token;
+}
 
 /**
  * validate!

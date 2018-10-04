@@ -18,7 +18,7 @@
         </h1>
         <menu class="details">
           <ul>
-            <li id = "login" class='state'><a onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Log In</a></li>
+            <li id = "login" class='state log'><a onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Log In</a></li>
             <li><a id="sign-out" class="signout-state" href="#"> Sign Out </a></li>
             <li><a id = "display-name" class="signout-state" href="#"></a>  </li>
             <li><a class="signout-state" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add a Meal</a></li>
@@ -53,7 +53,7 @@
       </div>
       <div id="id02" class="modal">
         <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-        <form name="login" class="modal-content" action="#" method="POST">
+        <form name="adminLogin" class="modal-content" action="#" method="POST">
           <div class="container">
             <h1>Log In</h1>
             <p>Please fill in this form to Log in to your account.</p>
@@ -67,14 +67,46 @@
             <div class="clearfix">
               <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
               <button type="submit" class="signupbtn">Log In</button>
-              <span id='login-spinner'>
+              <span id='admin-login-spinner'>
                 <img src="../assets/images/1.gif" alt="" srcset="">
+              </span>
+              <span id='admin-login-message'>
+                
               </span>
             </div>
           </div>
         </form>
       </div>
     </header>
+    <div class="moto">
+      <div class="mantra">
+        <div class="emoji">🍲</div>
+        <h2>QUALITY FOODS</h2>
+        <p>A delivery person must do more than simply transport items from one place to another. In this job, you're a caretaker
+        of others' food, property and documents, and your company's money and name. To perform your duties safely, promptly and
+        without costing your company time and money, you need good driving skills, good physical shape, and navigation and
+        organization skills.
+        </p>
+      </div>
+      <div class="mantra">
+        <div class="emoji">🚚</div>
+        <h2>FASTEST DELIVERY</h2>
+        <p>A delivery person must do more than simply transport items from one place to another. In this job, you're a caretaker
+        of others' food, property and documents, and your company's money and name. To perform your duties safely, promptly and
+        without costing your company time and money, you need good driving skills, good physical shape, and navigation and
+        organization skills.
+        </p>
+      </div>
+      <div class="mantra">
+        <div class="emoji">🍜</div>
+        <h2>QUALITY RECIPES</h2>
+        <p>A delivery person must do more than simply transport items from one place to another. In this job, you're a caretaker
+        of others' food, property and documents, and your company's money and name. To perform your duties safely, promptly and
+        without costing your company time and money, you need good driving skills, good physical shape, and navigation and
+        organization skills.
+        </p>
+      </div>
+    </div>
     <main>
       <div class="food-items signout-state">
         <h2 id="discover">ALL ORDERS</h2>
@@ -199,7 +231,8 @@
       <span>All Rights Reserved.</span>
     </footer>
     <script src="../js/modal.js"></script>
-    <script src="./js/admin.js"></script>
+    <script src="../js/state.js"></script>
+    <script src="../js/admin.js"></script>
   </section>
 </body>
 
