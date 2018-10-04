@@ -5,6 +5,9 @@ const signupSpinner = document.querySelector("#signup-spinner > img");
 const signOutBtn = document.getElementById("sign-out");
 const loginMessage = document.querySelector("#login-spinner-message");
 const signupMessage = document.querySelector("#signup-spinner-message");
+const allFoods = document.querySelector(".all-foods");
+const homePageSpinner = document.querySelector("#homepage-spinner > img");
+let template = "";
 
 const header = new Headers({
   Accept: "application/json",
@@ -115,6 +118,50 @@ const signOut = event => {
   changeState(state, "inline");
   changeState(signoutState, "none");
 };
+
+const getAllMenus = () => {
+  const request = new Request("https://mygbols.herokuapp.com/api/v1/menu", {
+    method: "GET",
+    headers: header
+  });
+  homePageSpinner.style.display = "block";
+  fetch(request)
+    .then(res => res)
+    .then(response => response.json())
+    .then(data => {
+      data.menus.forEach(menu => {
+        template += `
+    <form action="#">
+              <div class="food">
+                <img src="${menu.imageurl}" alt="rice and chicken">
+                <div class="cover cover-content">
+                  <div class="name-price">
+                    <h4>${menu.menutitle}</h4>
+                    <h4>#${menu.price}</h4>
+                  </div>
+                  <p>${menu.description}</p>
+                  <div class="quantity-section">
+                    <span class="quantity">
+                      Quantity:
+                    </span>
+                    <input type="number" name="quantity" min="1" value="1">
+                  </div>
+                  <a class="action" href="">ADD TO CART</a>
+                </div>
+              </div>
+            </form>
+    `;
+      });
+      allFoods.innerHTML = template;
+      homePageSpinner.style.display = "none";
+    })
+    .catch(err => {
+      homePageSpinner.style.display = "none";
+      throw err;
+    });
+};
+
 signOutBtn.addEventListener("click", signOut, false);
-loginForm.addEventListener("submit", login);
+loginForm.addEventListener("submit", login, false);
 signUpForm.addEventListener("submit", signUp, false);
+window.addEventListener("load", getAllMenus, false);

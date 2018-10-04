@@ -401,7 +401,7 @@ hr {
     }
 }
 
-#login-spinner > img, #signup-spinner > img{
+#login-spinner > img, #signup-spinner > img, #homepage-spinner > img {
   display: none;
   position: relative;
   padding-top: 10px;
@@ -417,4 +417,9 @@ hr {
   margin: 10px auto 5px auto;
   color: tomato;
   font-family: 'Yatra One', cursive;
+}
+
+#homepage-spinner > img {
+  margin-right: auto;
+  margin-left: auto;
 }
