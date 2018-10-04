@@ -152,6 +152,7 @@ const getAllMenus = () => {
             </form>
     `;
       });
+      console.log(data, template);
       allFoods.innerHTML = template;
       homePageSpinner.style.display = "none";
     })

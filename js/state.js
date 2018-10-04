@@ -3,8 +3,15 @@ const signoutState = document.querySelectorAll(".signout-state");
 const userDetails = document.getElementById("display-name");
 const navUserDetails = document.getElementById("nav-display-name");
 
+<<<<<<< HEAD
 /**
  * sets the display property to none or block
+=======
+
+ 
+/**
+ * sets the display property to none or block 
+>>>>>>> [feature #[160926542]] Add funtionality to load menu items from the database
  * @param  {NodeList} elements
  * @param  {string} value
  */
@@ -14,9 +21,15 @@ const changeState = (elements, value) => {
   }
 };
 
+<<<<<<< HEAD
 /**
  * checks if a user is logged and update app state accordingly
  */
+=======
+/** 
+ * checks if a user is logged and update app state accordingly
+*/
+>>>>>>> [feature #[160926542]] Add funtionality to load menu items from the database
 if (localStorage.getItem("token")) {
   changeState(signoutState, "inline");
   changeState(state, "none");
@@ -43,6 +56,10 @@ function jwtDecode(t) {
   return token;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> [feature #[160926542]] Add funtionality to load menu items from the database
 /**
  * validate!
  * @param  {string} password
