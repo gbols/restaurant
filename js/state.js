@@ -33,14 +33,6 @@ if (localStorage.getItem("token")) {
 if (localStorage.getItem("adminToken")) {
   changeState(signoutState, "inline");
   changeState(state, "none");
-  const adminToken = localStorage.getItem("adminToken");
-  const decoded = jwtDecode(adminToken);
-  userDetails.innerHTML = `<span><span>👤</span> ${
-    decoded.payload.user.username
-  }</span>`;
-  navUserDetails.innerHTML = `<span><span>👤</span> ${
-    decoded.payload.user.username
-  }</span>`;
 }
 
 function jwtDecode(t) {

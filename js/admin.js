@@ -1,6 +1,7 @@
 const adminLoginForm = document.forms["adminLogin"];
 const loginSpinner = document.querySelector("#admin-login-spinner > img");
 const loginMessage = document.querySelector("#admin-login-message");
+const signOutBtn = document.getElementById("sign-out");
 const currentPage = location.href;
 const header = new Headers({
   Accept: "application/json",
@@ -50,4 +51,13 @@ const adminLogin = event => {
     });
 };
 
+const signOut = event => {
+  event.preventDefault();
+  if (localStorage.adminToken) {
+    localStorage.removeItem("adminToken");
+  }
+  changeState(state, "inline");
+  changeState(signoutState, "none");
+};
+signOutBtn.addEventListener("click", signOut, false);
 adminLoginForm.addEventListener("submit", adminLogin, false);
