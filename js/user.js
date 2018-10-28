@@ -7,8 +7,13 @@ const loginMessage = document.querySelector("#login-spinner-message");
 const signupMessage = document.querySelector("#signup-spinner-message");
 const allFoods = document.querySelector(".all-foods");
 const homePageSpinner = document.querySelector("#homepage-spinner > img");
+const theCart = document.querySelector(".cart");
+let myOrders = [];
 let template = "";
 
+if (localStorage.getItem(decoded.payload.user.username)) {
+  myOrders = JSON.parse(localStorage.getItem(decoded.payload.user.username));
+}
 const header = new Headers({
   Accept: "application/json",
   "Content-Type": "application/json"
@@ -115,6 +120,7 @@ const signOut = event => {
   if (localStorage.token) {
     localStorage.removeItem("token");
   }
+  adminPage.style.display = "none";
   changeState(state, "inline");
   changeState(signoutState, "none");
 };
@@ -131,7 +137,6 @@ const getAllMenus = () => {
     .then(data => {
       data.menus.forEach(menu => {
         template += `
-    <form action="#">
               <div class="food">
                 <img src="${menu.imageurl}" alt="rice and chicken">
                 <div class="cover cover-content">
@@ -146,19 +151,60 @@ const getAllMenus = () => {
                     </span>
                     <input type="number" name="quantity" min="1" value="1">
                   </div>
-                  <a class="action" href="">ADD TO CART</a>
+                  <button id="${
+                    menu.menuid
+                  }" class="add-to-cart">ADD TO CART</button>
                 </div>
               </div>
-            </form>
     `;
       });
+      localStorage.setItem("menus", JSON.stringify(data.menus));
+      if (localStorage.getItem(decoded.payload.user.username)) {
+        theCart.dataset.badge = JSON.parse(
+          localStorage.getItem(decoded.payload.user.username)
+        ).length;
+      }
       allFoods.innerHTML = template;
       homePageSpinner.style.display = "none";
+      document
+        .querySelectorAll(".add-to-cart")
+        .forEach(btn => btn.addEventListener("click", AddToCart));
     })
     .catch(err => {
       homePageSpinner.style.display = "none";
       throw err;
     });
+};
+
+const AddToCart = event => {
+  let bool = true;
+  const order = {
+    quantity: Number(
+      event.target.previousElementSibling.lastElementChild.value
+    ),
+    menuid: Number(event.target.id)
+  };
+  if (myOrders.length > 0) {
+    myOrders.forEach(anOrder => {
+      if (anOrder.menuid == order.menuid) {
+        anOrder.quantity = order.quantity;
+        bool = false;
+      }
+    });
+    if (bool) myOrders.unshift(order);
+  } else myOrders.unshift(order);
+
+  if (localStorage.getItem("token")) {
+    localStorage.setItem(
+      decoded.payload.user.username,
+      JSON.stringify(myOrders)
+    );
+    theCart.dataset.badge = JSON.parse(
+      localStorage.getItem(decoded.payload.user.username)
+    ).length;
+  } else {
+    alert("you have to login to add items to your cart!");
+  }
 };
 
 signOutBtn.addEventListener("click", signOut, false);

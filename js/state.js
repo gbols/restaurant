@@ -2,6 +2,8 @@ const state = document.querySelectorAll(".state");
 const signoutState = document.querySelectorAll(".signout-state");
 const userDetails = document.getElementById("display-name");
 const navUserDetails = document.getElementById("nav-display-name");
+const adminPage = document.querySelector(".role");
+let decoded;
 
 /**
  * sets the display property to none or block
@@ -13,7 +15,7 @@ const changeState = (elements, value) => {
     elements[i].style.display = value;
   }
 };
-
+// console.log(orderBtn);
 /**
  * checks if a user is logged and update app state accordingly
  */
@@ -21,18 +23,17 @@ if (localStorage.getItem("token")) {
   changeState(signoutState, "inline");
   changeState(state, "none");
   const token = localStorage.getItem("token");
-  const decoded = jwtDecode(token);
+  decoded = jwtDecode(token);
+  if (decoded.payload.user.role === "admin") {
+    adminPage.style.display = "inline";
+  }
   userDetails.innerHTML = `<span><span>👤</span> ${
     decoded.payload.user.username
   }</span>`;
-  navUserDetails.innerHTML = `<span><span>👤</span> ${
-    decoded.payload.user.username
-  }</span>`;
-}
 
-if (localStorage.getItem("adminToken")) {
-  changeState(signoutState, "inline");
-  changeState(state, "none");
+  // navUserDetails.innerHTML = `<span><span>👤</span> ${
+  //   decoded.payload.user.username
+  // }</span>`;
 }
 
 function jwtDecode(t) {
@@ -53,5 +54,3 @@ const validate = (password, confirmPassword) => {
   if (password !== confirmPassword) return false;
   return true;
 };
-
-
