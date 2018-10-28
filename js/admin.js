@@ -11,64 +11,18 @@ const cloudDinaryUrl = "https://api.cloudinary.com/v1_1/daj3mflah/image/upload";
 const currentPage = location.href;
 let link;
 
-const header = new Headers({
-  Accept: "application/json",
-  "Content-Type": "application/json"
-});
 const mealHeader = new Headers({
   Accept: "application/json",
   "Content-Type": "application/json",
-  Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+  Authorization: `Bearer ${localStorage.getItem("token")}`
 });
-
-const adminLogin = event => {
-  event.preventDefault();
-  const details = {
-    username: adminLoginForm.username.value,
-    password: adminLoginForm.password.value
-  };
-  const request = new Request(
-    "https://mygbols.herokuapp.com/api/v1/auth/adminlogin",
-    {
-      method: "POST",
-      mode: "cors",
-      headers: header,
-      body: JSON.stringify(details)
-    }
-  );
-  loginSpinner.style.display = "block";
-  fetch(request)
-    .then(res => res)
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      if (!data.token) {
-        loginSpinner.style.display = "none";
-        loginMessage.innerHTML = `<h4 class="spinner">${data.message}</h4>`;
-      } else {
-        changeState(signoutState, "inline");
-        changeState(state, "none");
-        loginSpinner.style.display = "none";
-        loginMessage.innerHTML = `<h4 class="spinner">${data.message}</h4>`;
-        if (!localStorage.adminToken) {
-          localStorage.setItem("adminToken", data.token);
-        }
-        location.assign(currentPage);
-        adminLoginForm.reset();
-      }
-    })
-    .catch(err => {
-      loginSpinner.style.display = "none";
-      throw err;
-    });
-};
 
 const signOut = event => {
   event.preventDefault();
-  if (localStorage.adminToken) {
-    localStorage.removeItem("adminToken");
+  if (localStorage.token) {
+    localStorage.removeItem("token");
   }
+  adminPage.style.display = "none";
   changeState(state, "inline");
   changeState(signoutState, "none");
 };
@@ -130,4 +84,3 @@ const upload = event => {
 imageLink.addEventListener("change", upload, false);
 addMenu.addEventListener("submit", addAMenu, false);
 signOutBtn.addEventListener("click", signOut, false);
-adminLoginForm.addEventListener("submit", adminLogin, false);
