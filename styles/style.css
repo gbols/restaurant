@@ -103,7 +103,7 @@ a:hover {
   display: grid;
   grid-gap: 20px;
   padding: 10px;
-  grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(300px, 300px));
 }
 
 .food {
@@ -374,7 +374,11 @@ hr {
     border: 1px solid #f1f1f1;
     margin-bottom: 25px;
 }
- 
+
+#ruler {
+  border: 1px solid grey;
+  margin-bottom: 0px;
+}
 /* The Close Button (x) */
 .close {
     position: absolute;
