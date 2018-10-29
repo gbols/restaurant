@@ -3,6 +3,8 @@ const signoutState = document.querySelectorAll(".signout-state");
 const userDetails = document.getElementById("display-name");
 const navUserDetails = document.getElementById("nav-display-name");
 const adminPage = document.querySelector(".role");
+const menus = JSON.parse(localStorage.getItem("menus"));
+
 let decoded;
 
 /**
@@ -15,7 +17,17 @@ const changeState = (elements, value) => {
     elements[i].style.display = value;
   }
 };
-// console.log(orderBtn);
+const calTotal = arr => {
+  return arr.reduce((acc, cur) => acc + cur.quantity * cur.price, 0);
+};
+const combine = (menus, orders) => {
+  let arr = [];
+  orders.forEach(order => {
+    let item = menus.find(menu => menu.menuid == order.menuid);
+    arr.push({ ...item, quantity: order.quantity });
+  });
+  return arr;
+};
 /**
  * checks if a user is logged and update app state accordingly
  */

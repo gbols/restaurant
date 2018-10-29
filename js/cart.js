@@ -1,7 +1,6 @@
 const allFoods = document.querySelector(".all-foods");
 const orderSpinner = document.querySelector("#order-spinner > img");
 const OrderSpinnerMsg = document.querySelector("#order-spinner-message");
-const menus = JSON.parse(localStorage.getItem("menus"));
 let orderBtn = document.getElementById("order");
 let emptyMsg = document.getElementById("empty");
 let orders, totalHTML, cartArray, total;
@@ -10,14 +9,7 @@ let template = "";
 if (localStorage.getItem(decoded.payload.user.username)) {
   orders = JSON.parse(localStorage.getItem(decoded.payload.user.username));
 }
-const combine = (menus, orders) => {
-  let arr = [];
-  orders.forEach(order => {
-    let item = menus.find(menu => menu.menuid == order.menuid);
-    arr.push({ ...item, quantity: order.quantity });
-  });
-  return arr;
-};
+
 if (orders) {
   cartArray = combine(menus, orders);
 }
@@ -56,10 +48,7 @@ const loadCartItems = cartItems => {
     `;
     });
 
-     total = cartArray.reduce(
-      (acc, cur) => acc + cur.quantity * cur.price,
-      0
-      );
+     total = calTotal(cartArray);
 
     }
   allFoods.innerHTML = template;
