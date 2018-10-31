@@ -1,4 +1,5 @@
 const historyElm = document.getElementById("history");
+const orderSpinner = document.querySelector("#order-spinner > img");
 let template = "";
 let mixed;
 const header = new Headers({
@@ -16,7 +17,7 @@ const getUserHistory = () => {
       headers: header
     }
   );
-  // homePageSpinner.style.display = "block";
+  orderSpinner.style.display = "block";
   fetch(request)
     .then(res => res)
     .then(response => response.json())
@@ -24,7 +25,8 @@ const getUserHistory = () => {
       if (data.success) {
         mixed = data;
         mix(mixed.orders, menus);
-        mixed.orders.forEach(order => {
+        mixed = mixed.orders.reverse();
+        mixed.forEach(order => {
           template += `
         <hr id="ruler">
         <span class="nav">
@@ -59,28 +61,11 @@ const getUserHistory = () => {
         });
       }
       historyElm.insertAdjacentHTML("afterend", template);
+      orderSpinner.style.display = "none";
     })
     .catch(err => {
       throw err;
     });
 };
 
-const mix = (orders, menus) => {
-  orders.forEach(order => {
-    order.info.forEach((info, index) => {
-      let item = menus.find(menu => menu.menuid == info.menuid);
-      if (item) info = { ...info, ...item };
-      order.info.splice(index, 1, info);
-    });
-  });
-};
-
-const dateParser = theDate => {
-  let year, month, day;
-  theDate = new Date(theDate);
-  year = theDate.getFullYear();
-  month = theDate.getMonth();
-  day = theDate.getDate();
-  return `${day}-${month}-${year}`;
-};
 window.addEventListener("load", getUserHistory, false);

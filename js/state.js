@@ -17,17 +17,7 @@ const changeState = (elements, value) => {
     elements[i].style.display = value;
   }
 };
-const calTotal = arr => {
-  return arr.reduce((acc, cur) => acc + cur.quantity * cur.price, 0);
-};
-const combine = (menus, orders) => {
-  let arr = [];
-  orders.forEach(order => {
-    let item = menus.find(menu => menu.menuid == order.menuid);
-    arr.push({ ...item, quantity: order.quantity });
-  });
-  return arr;
-};
+
 /**
  * checks if a user is logged and update app state accordingly
  */
