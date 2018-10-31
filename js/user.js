@@ -11,7 +11,10 @@ const theCart = document.querySelector(".cart");
 let myOrders = [];
 let template = "";
 
-if (localStorage.getItem(decoded.payload.user.username)) {
+if (
+  localStorage.getItem("token") &&
+  localStorage.getItem(decoded.payload.user.username)
+) {
   myOrders = JSON.parse(localStorage.getItem(decoded.payload.user.username));
 }
 const header = new Headers({
@@ -159,10 +162,14 @@ const getAllMenus = () => {
     `;
       });
       localStorage.setItem("menus", JSON.stringify(data.menus));
-      if (localStorage.getItem(decoded.payload.user.username)) {
-        theCart.dataset.badge = JSON.parse(
-          localStorage.getItem(decoded.payload.user.username)
-        ).length;
+      if (
+        localStorage.getItem("token") &&
+        decoded.payload.user.role == "user"
+      ) {
+        if (localStorage.getItem(decoded.payload.user.username))
+          theCart.dataset.badge = JSON.parse(
+            localStorage.getItem(decoded.payload.user.username)
+          ).length;
       }
       allFoods.innerHTML = template;
       homePageSpinner.style.display = "none";
