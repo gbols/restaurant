@@ -25,9 +25,10 @@ const signOut = event => {
   if (localStorage.token) {
     localStorage.removeItem("token");
   }
-  adminPage.style.display = "none";
+  // adminPage.style.display = "none";
   changeState(state, "inline");
   changeState(signoutState, "none");
+  location.assign("../index.html");
 };
 const addAMenu = event => {
   event.preventDefault();
@@ -97,12 +98,12 @@ const getAllOrders = () => {
       if (data.success) {
         allData = data;
         mix(allData.orders, menus);
-        allData = allData.orders.sort((a, b) => a.orderid - b.orderid);
+        allData = allData.orders.sort((a, b) => b.orderid - a.orderid);
         allData.forEach((order, index) => {
           template += `
         <li class="table-row">
         <div class="col history col-1">${index + 1}</div>
-          <div class="col history col-1">${order.orderid}</div>
+          <div class="col anorder history col-1">${order.orderid}</div>
               <div class=" history col col-1"><span class="dropup">🔧
                   <div class="dropup-content">
                     <a class="update" href="#">new</a>
@@ -126,6 +127,11 @@ const getAllOrders = () => {
         .querySelectorAll(".update")
         .forEach(status =>
           status.addEventListener("click", updateStatus, false)
+        );
+      document
+        .querySelectorAll(".anorder")
+        .forEach(order =>
+          order.addEventListener("click", getSingleOrder, false)
         );
     })
     .catch(err => {
@@ -161,6 +167,27 @@ const updateStatus = event => {
     })
     .catch(err => {
       orderSpinner.style.display = "none";
+      throw err;
+    });
+};
+
+const getSingleOrder = event => {
+  const orderID = event.target.innerText;
+  const request = new Request(`https://mygbols.herokuapp.com/api/v1/orders/${orderID}`, {
+    method: "GET",
+    headers: mealHeader
+  });
+  fetch(request)
+    .then(res => res)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        localStorage.setItem("anOrder",JSON.stringify(data));
+        window.open("../details.html");
+      }
+   
+    })
+    .catch(err => {
       throw err;
     });
 };

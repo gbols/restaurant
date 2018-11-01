@@ -4,7 +4,8 @@ const userDetails = document.getElementById("display-name");
 const navUserDetails = document.getElementById("nav-display-name");
 const adminPage = document.querySelector(".role");
 const menus = JSON.parse(localStorage.getItem("menus"));
-
+const allFoodItems = document.querySelector(".food-items");
+const cart = document.querySelector(".cart");
 let decoded;
 
 /**
@@ -28,6 +29,8 @@ if (localStorage.getItem("token")) {
   decoded = jwtDecode(token);
   if (decoded.payload.user.role === "admin") {
     adminPage.style.display = "inline";
+    allFoodItems.style.display = "none";
+    cart.style.display = "none";
   }
   userDetails.innerHTML = `<span><span>👤</span> ${
     decoded.payload.user.username
