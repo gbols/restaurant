@@ -146,7 +146,7 @@ a:hover {
   font-weight: bolder;
   text-align: center;
 }
-.action:hover, .completed:hover{
+.action:hover{
   background: #f4ca1f;
   color: #191c1e;
 }
@@ -511,4 +511,28 @@ hr {
     flex-basis: 50%;
     text-align: right;
   }
+}
+.status {
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  
+}
+.cancelled {
+  background-color: red;
+}
+.completed {
+background-color: green;
+}
+.new {
+  background-color: #f4ca1f;
+}
+.processing {
+  background-color: grey;
+}
+.history {
+  font-weight: bold;
+  font-size: 1.5em;
 }
