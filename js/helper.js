@@ -24,7 +24,7 @@ const dateParser = theDate => {
   let year, month, day;
   theDate = new Date(theDate);
   year = theDate.getFullYear();
-  month = theDate.getMonth();
+  month = theDate.getMonth() + 1;
   day = theDate.getDate();
   return `${day}-${month}-${year}`;
 };

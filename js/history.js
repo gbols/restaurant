@@ -25,7 +25,7 @@ const getUserHistory = () => {
       if (data.success) {
         mixed = data;
         mix(mixed.orders, menus);
-        mixed = mixed.orders.sort((a, b) => a.orderid - b.orderid);
+        mixed = mixed.orders.sort((a, b) => b.orderid - a.orderid);
         mixed.forEach((order, index) => {
           template += `
         <li class="table-row">
