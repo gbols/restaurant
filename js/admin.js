@@ -97,29 +97,67 @@ const getAllOrders = () => {
       if (data.success) {
         allData = data;
         mix(allData.orders, menus);
-         allData = allData.orders.reverse();
-        allData.forEach((order, index )=> {
+        allData = allData.orders.sort((a, b) => a.orderid - b.orderid);
+        allData.forEach((order, index) => {
           template += `
         <li class="table-row">
-        <div class="col col-1">${index + 1}</div>
-          <div class="col col-1">${order.orderid}</div>
-              <div class="col col-1"><span class="dropup">🔧
+        <div class="col history col-1">${index + 1}</div>
+          <div class="col history col-1">${order.orderid}</div>
+              <div class=" history col col-1"><span class="dropup">🔧
                   <div class="dropup-content">
-                    <a href="#">New</a>
-                    <a href="#">Processing</a>
-                    <a href="#">Cancelled</a>
-                    <a href="#">Completed</a>
+                    <a class="update" href="#">new</a>
+                    <a class="update" href="#">processing</a>
+                    <a class="update" href="#">cancelled</a>
+                    <a class="update" href="#">completed</a>
                   </div>
                 </span></div>
-              <div class="col col-2">${order.userid}</div>
-              <div class="col col-2">${calTotal(order.info)}</div>
-              <div class="col col-2">${order.status}</div>
+              <div class="col history col-2">${order.userid}</div>
+              <div class="history num col col-2">${calTotal(order.info)}</div>
+              <div class="${order.status} status col col-2">${
+            order.status
+          }</div>
             </li>
         `;
         });
       }
       tableHeader.insertAdjacentHTML("afterend", template);
       orderSpinner.style.display = "none";
+      document
+        .querySelectorAll(".update")
+        .forEach(status =>
+          status.addEventListener("click", updateStatus, false)
+        );
+    })
+    .catch(err => {
+      orderSpinner.style.display = "none";
+      throw err;
+    });
+};
+
+const updateStatus = event => {
+  const newStatus = {
+    status: event.target.innerText
+  };
+  const orderID = Number(
+    event.target.parentElement.parentElement.parentElement
+      .previousElementSibling.innerText
+  );
+  const request = new Request(
+    `https://mygbols.herokuapp.com/api/v1/orders/${orderID}`,
+    {
+      method: "PUT",
+      mode: "cors",
+      headers: mealHeader,
+      body: JSON.stringify(newStatus)
+    }
+  );
+  fetch(request)
+    .then(res => res)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        location.href = currentPage;
+      }
     })
     .catch(err => {
       orderSpinner.style.display = "none";

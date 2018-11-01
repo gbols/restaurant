@@ -1,4 +1,4 @@
-const historyElm = document.getElementById("history");
+const tableHeader = document.querySelector(".table-header");
 const orderSpinner = document.querySelector("#order-spinner > img");
 let template = "";
 let mixed;
@@ -25,42 +25,24 @@ const getUserHistory = () => {
       if (data.success) {
         mixed = data;
         mix(mixed.orders, menus);
-        mixed = mixed.orders.reverse();
-        mixed.forEach(order => {
+        mixed = mixed.orders.sort((a, b) => a.orderid - b.orderid);
+        mixed.forEach((order, index) => {
           template += `
-        <hr id="ruler">
-        <span class="nav">
-          <h4>Date <time class="num">${dateParser(
-            Number(order.orderat)
-          )}</time></h4>
-          <h4>Status <time class="num">${order.status}</time></h4>
-          <h4>Total Sum<span class="num"> ${calTotal(order.info)}</span></h4>
-        </span>
-        <div class="all-foods">
+        <li class="table-row">
+        <div class="col history col-1">${index + 1}</div>
+          <div class="col history col-1">${order.orderid}</div>
+              <div class="history col col-1">
+              ${dateParser(Number(order.orderat))}
+                </div>
+              <div class="num history col col-2">${calTotal(order.info)}</div>
+              <div class="${order.status} status col col-2">${
+            order.status
+          }</div>
+            </li>
         `;
-          order.info.forEach(item => {
-            template += `
-          <div class="food">
-            <img src="${item.imageurl}">
-            <div class="cover cover-content">
-              <div class="name-price">
-                <h4>${item.menutitle}</h4>
-                <h4>#${item.price}</h4>
-              </div>
-              <p>${item.description}</p>
-              <span class="name-price">
-                <h4>Unit Total<time class="num">${item.quantity *
-                  item.price}</time></h4>
-                <h4>Quantity <span class="num"> ${item.quantity}</span></h4>
-              </span>
-            </div>
-          </div>
-          `;
-          });
-          template += `</div>`;
         });
       }
-      historyElm.insertAdjacentHTML("afterend", template);
+      tableHeader.insertAdjacentHTML("afterend", template);
       orderSpinner.style.display = "none";
     })
     .catch(err => {
